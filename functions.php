@@ -1,9 +1,9 @@
 <?php
 
 /*
-* Inmobiliaria Profesional
-* @package Inmobiliaria Profesional
-* @subpackage Inmobiliaria Profesional
+* Valencia Marketing
+* @package Valencia Marketing
+* @subpackage Valencia Marketing
 * @since 1.0
 */
 
@@ -53,7 +53,7 @@ if (!function_exists('ama_custom_theme_features')) {
         add_theme_support('post-thumbnails');
 
         // Add theme support for Translation
-        load_theme_textdomain('Abogados', get_template_directory() . '/languages');
+        load_theme_textdomain('valencia_marketing', get_template_directory() . '/languages');
 
         add_image_size('blog_size_image', 1200, 900, true);
     }
@@ -136,10 +136,6 @@ class Custom_Nav_Walker extends Walker_Nav_Menu
     }
 }
 
-
-
-
-
 // Registrar zonas de widgets en el Footer
 function mi_tema_widgets_footer()
 {
@@ -186,6 +182,6 @@ add_action('after_setup_theme', 'mi_tema_menus');
 // En functions.php de tu tema o child theme
 function registrar_mis_menus()
 {
-    register_nav_menu('principal-menu', __('Menú Principal', 'inmobiliaria_profesional'));
+    register_nav_menu('principal-menu', __('Menú Principal', 'valencia_marketing'));
 }
 add_action('after_setup_theme', 'registrar_mis_menus');
