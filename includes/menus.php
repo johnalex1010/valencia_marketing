@@ -1,18 +1,19 @@
 <?php
 
 /*
-* Huevos Guativita
-* @package Huevos Guativita
-* @subpackage Huevos Guativita
+* Valencia Marketing
+* @package Valencia Marketing
+* @subpackage Valencia Marketing
 * @since 1.0
 */
 
-function ama_menus()
+function valencia_marketing_menus()
 {
-    register_nav_menu(
-        'main-menu', // Identificador del menú
-        __('Menu principal de encabezado', 'ama_abogados') // Descripción del menú
-    );
+    register_nav_menus([
+        'principal-menu' => 'Menú Español',
+        'principal-menu-en' => 'Menu Inglés'
+    ]);
 }
 
-add_action('init', 'ama_menus');
+
+add_action('init', 'valencia_marketing_menus');

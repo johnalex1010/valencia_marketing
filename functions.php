@@ -54,8 +54,6 @@ if (!function_exists('ama_custom_theme_features')) {
 
         // Add theme support for Translation
         load_theme_textdomain('valencia_marketing', get_template_directory() . '/languages');
-
-        add_image_size('blog_size_image', 1200, 900, true);
     }
     add_action('after_setup_theme', 'ama_custom_theme_features');
 }
@@ -67,19 +65,7 @@ function agregar_extracto_a_paginas()
 }
 add_action('init', 'agregar_extracto_a_paginas');
 
-// Agregar soporte para etiquetas en páginas
-function agregar_etiquetas_a_paginas()
-{
-    register_taxonomy_for_object_type('post_tag', 'page');
-}
-add_action('init', 'agregar_etiquetas_a_paginas');
 
-// Agregar soporte para categorías en páginas
-function agregar_categorias_a_paginas()
-{
-    register_taxonomy_for_object_type('category', 'page');
-}
-add_action('init', 'agregar_categorias_a_paginas');
 
 
 //Agregar meta description
@@ -115,26 +101,6 @@ require_once('includes/personalizador-tema.php');
 
 
 
-// Registrar el menú
-function registrar_menu_principal()
-{
-    register_nav_menus(array(
-        'main-menu' => __('Menú Principal')
-    ));
-}
-add_action('after_setup_theme', 'registrar_menu_principal');
-
-// Clase Walker personalizada
-class Custom_Nav_Walker extends Walker_Nav_Menu
-{
-    function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
-    {
-        $active_class = in_array('current-menu-item', $item->classes) ? ' active' : '';
-        $output .= '<a href="' . esc_url($item->url) . '" class="nav-item nav-link' . $active_class . '">';
-        $output .= esc_html($item->title);
-        $output .= '</a>';
-    }
-}
 
 // Registrar zonas de widgets en el Footer
 function mi_tema_widgets_footer()
@@ -170,18 +136,35 @@ function mi_tema_widgets_footer()
 add_action('widgets_init', 'mi_tema_widgets_footer');
 
 
-// Registrar menú de Enlaces Rápidos en el Footer
-function mi_tema_menus()
-{
-    register_nav_menus(array(
-        'menu_footer' => 'Menú Footer'
-    ));
-}
-add_action('after_setup_theme', 'mi_tema_menus');
 
-// En functions.php de tu tema o child theme
-function registrar_mis_menus()
+
+
+
+
+// Función para obtener el idioma actual
+function get_current_lang()
 {
-    register_nav_menu('principal-menu', __('Menú Principal', 'valencia_marketing'));
+    // Obtén la base del sitio, por ejemplo: /Valencia_Marketing/web
+    $base_path = trim(parse_url(home_url(), PHP_URL_PATH), '/');
+
+    // URI completa solicitada, por ejemplo: /Valencia_Marketing/web/en/
+    $full_path = trim($_SERVER['REQUEST_URI'], '/');
+
+    // Elimina la base del path
+    if ($base_path && strpos($full_path, $base_path) === 0) {
+        $relative_path = substr($full_path, strlen($base_path));
+        $relative_path = trim($relative_path, '/'); // limpieza adicional
+    } else {
+        $relative_path = $full_path;
+    }
+
+    // Extrae el primer segmento
+    $segments = explode('/', $relative_path);
+    $first_segment = isset($segments[0]) ? $segments[0] : '';
+
+    if ($first_segment === 'en') {
+        return 'en';
+    }
+
+    return 'es';
 }
-add_action('after_setup_theme', 'registrar_mis_menus');

@@ -1,4 +1,4 @@
-jQuery(function() {
+$(function() {
     ParallaxScroll.init();
 });
 
@@ -16,14 +16,14 @@ var ParallaxScroll = {
             return;
         }
         this._requestAnimationFrame = (function(){
-            return  window.requestAnimationFrame       ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame    ||
-                window.oRequestAnimationFrame      ||
-                window.msRequestAnimationFrame     ||
-                function(/* function */ callback, /* DOMElement */ element){
-                    window.setTimeout(callback, 1000 / 60);
-                };
+          return  window.requestAnimationFrame       || 
+                  window.webkitRequestAnimationFrame || 
+                  window.mozRequestAnimationFrame    || 
+                  window.oRequestAnimationFrame      || 
+                  window.msRequestAnimationFrame     || 
+                  function(/* function */ callback, /* DOMElement */ element){
+                      window.setTimeout(callback, 1000 / 60);
+                  };
         })();
         this._onScroll(true);
     },
@@ -38,23 +38,23 @@ var ParallaxScroll = {
         if (this.showLogs) console.log("Parallax Scroll / " + message);
     },
     _onScroll: function(noSmooth) {
-        var scroll = jQuery(document).scrollTop();
-        var windowHeight = jQuery(window).height();
+        var scroll = $(document).scrollTop();
+        var windowHeight = $(window).height();
         this._log("onScroll " + scroll);
-        jQuery("[data-parallax]").each(jQuery.proxy(function(index, el) {
-            var jQueryel = jQuery(el);
+        $("[data-parallax]").each($.proxy(function(index, el) {
+            var $el = $(el);
             var properties = [];
             var applyProperties = false;
-            var style = jQueryel.data("style");
+            var style = $el.data("style");
             if (style == undefined) {
-                style = jQueryel.attr("style") || "";
-                jQueryel.data("style", style);
+                style = $el.attr("style") || "";
+                $el.data("style", style);
             }
-            var datas = [jQueryel.data("parallax")];
+            var datas = [$el.data("parallax")];
             var iData;
             for(iData = 2; ; iData++) {
-                if(jQueryel.data("parallax"+iData)) {
-                    datas.push(jQueryel.data("parallax-"+iData));
+                if($el.data("parallax"+iData)) {
+                    datas.push($el.data("parallax-"+iData));
                 }
                 else {
                     break;
@@ -64,7 +64,7 @@ var ParallaxScroll = {
             for(iData = 0; iData < datasLength; iData ++) {
                 var data = datas[iData];
                 var scrollFrom = data["from-scroll"];
-                if (scrollFrom == undefined) scrollFrom = Math.max(0, jQuery(el).offset().top - windowHeight);
+                if (scrollFrom == undefined) scrollFrom = Math.max(0, $(el).offset().top - windowHeight);
                 scrollFrom = scrollFrom | 0;
                 var scrollDistance = data["distance"];
                 var scrollTo = data["to-scroll"];
@@ -72,8 +72,8 @@ var ParallaxScroll = {
                 scrollDistance = Math.max(scrollDistance | 0, 1);
                 var easing = data["easing"];
                 var easingReturn = data["easing-return"];
-                if (easing == undefined || !jQuery.easing|| !jQuery.easing[easing]) easing = null;
-                if (easingReturn == undefined || !jQuery.easing|| !jQuery.easing[easingReturn]) easingReturn = easing;
+                if (easing == undefined || !$.easing|| !$.easing[easing]) easing = null;
+                if (easingReturn == undefined || !$.easing|| !$.easing[easingReturn]) easingReturn = easing;
                 if (easing) {
                     var totalTime = data["duration"];
                     if (totalTime == undefined) totalTime = scrollDistance;
@@ -81,7 +81,7 @@ var ParallaxScroll = {
                     var totalTimeReturn = data["duration-return"];
                     if (totalTimeReturn == undefined) totalTimeReturn = totalTime;
                     scrollDistance = 1;
-                    var currentTime = jQueryel.data("current-time");
+                    var currentTime = $el.data("current-time");
                     if(currentTime == undefined) currentTime = 0;
                 }
                 if (scrollTo == undefined) scrollTo = scrollFrom + scrollDistance;
@@ -95,29 +95,29 @@ var ParallaxScroll = {
                 scrollCurrent = Math.max(scrollCurrent, scrollFrom);
                 scrollCurrent = Math.min(scrollCurrent, scrollTo);
                 if(easing) {
-                    if(jQueryel.data("sens") == undefined) jQueryel.data("sens", "back");
+                    if($el.data("sens") == undefined) $el.data("sens", "back");
                     if(scrollCurrent>scrollFrom) {
-                        if(jQueryel.data("sens") == "back") {
+                        if($el.data("sens") == "back") {
                             currentTime = 1;
-                            jQueryel.data("sens", "go");
+                            $el.data("sens", "go");
                         }
                         else {
                             currentTime++;
                         }
                     }
                     if(scrollCurrent<scrollTo) {
-                        if(jQueryel.data("sens") == "go") {
+                        if($el.data("sens") == "go") {
                             currentTime = 1;
-                            jQueryel.data("sens", "back");
+                            $el.data("sens", "back");
                         }
                         else {
                             currentTime++;
                         }
                     }
                     if(noSmooth) currentTime = totalTime;
-                    jQueryel.data("current-time", currentTime);
+                    $el.data("current-time", currentTime);
                 }
-                this._properties.map(jQuery.proxy(function(prop) {
+                this._properties.map($.proxy(function(prop) {
                     var defaultProp = 0;
                     var to = data[prop];
                     if (to == undefined) return;
@@ -127,26 +127,26 @@ var ParallaxScroll = {
                     else {
                         to = to | 0;
                     }
-                    var prev = jQueryel.data("_" + prop);
+                    var prev = $el.data("_" + prop);
                     if (prev == undefined) prev = defaultProp;
                     var next = ((to-defaultProp) * ((scrollCurrent - scrollFrom) / (scrollTo - scrollFrom))) + defaultProp;
                     var val = prev + (next - prev) / smoothness;
                     if(easing && currentTime>0 && currentTime<=totalTime) {
                         var from = defaultProp;
-                        if(jQueryel.data("sens") == "back") {
+                        if($el.data("sens") == "back") {
                             from = to;
                             to = -to;
                             easing = easingReturn;
                             totalTime = totalTimeReturn;
                         }
-                        val = jQuery.easing[easing](null, currentTime, from, to, totalTime);
+                        val = $.easing[easing](null, currentTime, from, to, totalTime);
                     }
                     val = Math.ceil(val * this.round) / this.round;
                     if(val==prev&&next==to) val = to;
                     if(!properties[prop]) properties[prop] = 0;
                     properties[prop] += val;
                     if (prev != properties[prop]) {
-                        jQueryel.data("_" + prop, properties[prop]);
+                        $el.data("_" + prop, properties[prop]);
                         applyProperties = true;
                     }
                 }, this));
@@ -155,9 +155,9 @@ var ParallaxScroll = {
                 if (properties["z"] != undefined) {
                     var perspective = data["perspective"];
                     if (perspective == undefined) perspective = 800;
-                    var jQueryparent = jQueryel.parent();
-                    if(!jQueryparent.data("style")) jQueryparent.data("style", jQueryparent.attr("style") || "");
-                    jQueryparent.attr("style", "perspective:" + perspective + "px; -webkit-perspective:" + perspective + "px; "+ jQueryparent.data("style"));
+                    var $parent = $el.parent();
+                    if(!$parent.data("style")) $parent.data("style", $parent.attr("style") || "");
+                    $parent.attr("style", "perspective:" + perspective + "px; -webkit-perspective:" + perspective + "px; "+ $parent.data("style"));
                 }
                 if(properties["scaleX"] == undefined) properties["scaleX"] = 1;
                 if(properties["scaleY"] == undefined) properties["scaleY"] = 1;
@@ -172,14 +172,14 @@ var ParallaxScroll = {
                 var scale3d = "scaleX(" + properties["scaleX"] + ") scaleY(" + properties["scaleY"] + ") scaleZ(" + properties["scaleZ"] + ")";
                 var cssTransform = translate3d + " " + rotate3d + " " + scale3d + ";";
                 this._log(cssTransform);
-                jQueryel.attr("style", "transform:" + cssTransform + " -webkit-transform:" + cssTransform + " " + style);
+                $el.attr("style", "transform:" + cssTransform + " -webkit-transform:" + cssTransform + " " + style);
             }
         }, this));
         if(window.requestAnimationFrame) {
-            window.requestAnimationFrame(jQuery.proxy(this._onScroll, this, false));
+            window.requestAnimationFrame($.proxy(this._onScroll, this, false));
         }
         else {
-            this._requestAnimationFrame(jQuery.proxy(this._onScroll, this, false));
+            this._requestAnimationFrame($.proxy(this._onScroll, this, false));
         }
     }
 };

@@ -8,115 +8,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <?php wp_head(); ?>
-    <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-
-    <?php
-    if (is_single() && comments_open()) {
-        wp_enqueue_script('comment-reply');
-    }
-    ?>
-
-
+    <!-- Site Meta -->
     <meta name="description" content="<?php echo esc_attr(get_the_excerpt()); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fafafa">
+
+    <?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
 
+    <header class="header-area-desktop miwlo-white-bg miwlo-header-black">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar navbar-expand-md miwlo-initial-navbar">
+                        <?php
+                        $options = get_theme_mod('ama_settings');
 
-
-    <!-- header -->
-    <header class="header-area">
-        <div class="header-top second-header d-none d-md-block">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 col-md-12 d-none  d-md-block">
-                        <div class="header-cta">
-                            <ul>
-                                <li> Soy Profesional <i class="far fa-heart"></i> </li>
-                            </ul>
+                        //Logo
+                        if (!empty($options['logo'])) {
+                            $logo = $options['logo'];
+                        }
+                        ?>
+                        <div class="logo">
+                            <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
+                                <img src="<?php echo $logo ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" class="logo">
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 d-none d-lg-block">
-                        <div class="header-social text-right">
-                            <span>
-                                <a href="https://www.facebook.com/INMOBILIARIAPRO" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.instagram.com/inmobiliaria_profesional/" target="_blank" title="Facebook"><i class="fab fa-instagram"></i></a>
-                                <a href="https://es.linkedin.com/company/inmobiliariaprofesional" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            </span>
-                            <!--  /social media icon redux -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div id="header-sticky" class="menu-area">
-            <div class="container">
-                <div class="second-menu">
-                    <div class="row align-items-center">
-                        <div class="col-xl-2 col-lg-2">
-
-                            <?php
-                            $options = get_theme_mod('ama_settings');
-
-                            //Logo
-                            if (!empty($options['logo'])) {
-                                $logo = $options['logo'];
-                            }
-                            ?>
-                            <div class="logo">
-                                <a href="<?php echo esc_url(home_url('/')); ?>">
-                                    <img src="<?php echo $logo ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" class="logo">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-xl-7 col-lg-7">
-
-                            <div class="main-menu text-center text-xl-center">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto">
                                 <?php
+                                $lang = get_current_lang(); // Asegúrate de tener esta función funcionando correctamente
+
+                                $menu_location = ($lang === 'en') ? 'principal-menu-en' : 'principal-menu';
+
                                 wp_nav_menu([
-                                    'theme_location' => 'principal-menu',
+                                    'theme_location' => $menu_location,
                                     'container'      => 'nav',
-                                    'container_id'   => 'mobile-menu',
-                                    'menu_class'     => '',         // Si quieres clases extra para el <ul>
-                                    'depth'          => 2,          // Profundidad de submenús
-                                    'fallback_cb'    => false,      // Si no hay menú asignado, no muestra nada
-                                    'walker'         => ''          // Puedes usar un custom walker si tu HTML requiere tags especiales
+                                    'menu_class'     => 'navbar-nav ms-auto',
+                                    'depth'          => 2,
+                                    'fallback_cb'    => false
                                 ]);
                                 ?>
-                            </div>
-                        </div>
+                            </ul>
 
+                            <ul class="button-wrapper ml-5">
+                                <li>
+                                    <?php
+                                    // 1) Recuperar el array completo que WP guarda bajo "ama_settings"
+                                    $ama_opts = get_theme_mod('ama_settings', []);
 
-                        <?php
-                        // 1) Recuperar el array completo que WP guarda bajo "ama_settings"
-                        $ama_opts = get_theme_mod('ama_settings', []);
+                                    // 2) Extraer el texto y la URL, con fallback a tus predeterminados
+                                    $cta_text = ! empty($ama_opts['cta_text']) ? $ama_opts['cta_text'] : 'Reserva tu cita';
+                                    $cta_url  = ! empty($ama_opts['cta_url']) ? $ama_opts['cta_url']  : '#';
+                                    ?>
 
-                        // 2) Extraer el texto y la URL, con fallback a tus predeterminados
-                        $cta_text = ! empty($ama_opts['cta_text']) ? $ama_opts['cta_text'] : 'Encuentra tu inmueble';
-                        $cta_url  = ! empty($ama_opts['cta_url']) ? $ama_opts['cta_url']  : '#';
-                        ?>
+                                    <?php if ($cta_text && $cta_url) : ?>
 
-                        <?php if ($cta_text && $cta_url) : ?>
-                            <div class="col-xl-3 col-lg-3 text-center d-none d-lg-block">
-                                <a target="_blank" title="<?php echo esc_attr($cta_text); ?>" href="<?php echo esc_url($cta_url); ?>" class="btn ss-btn" style="padding: 14px;">
-                                    <?php echo esc_html($cta_text); ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
+                                        <a class="miwlo-btn-pill btn-black" target="_blank" title="<?php echo esc_attr($cta_text); ?>" href="<?php echo esc_url($cta_url); ?>">
+                                            <?php echo esc_html($cta_text); ?>
+                                        </a>
 
+                                    <?php endif; ?>
+                                    <!-- <a class="miwlo-btn-pill btn-black" href="#">Reserva tu cita</a> -->
 
-
-
-
-
-                        <div class="col-12">
-                            <div class="mobile-menu"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                </li>
+                            </ul>
+                        </div><!-- .collapse .navbar-collapse -->
+                    </nav>
+                </div><!-- .col-xs-12 -->
+            </div><!-- .row -->
+        </div><!-- .container -->
     </header>
-    <!-- header-end -->
+
+    <!-- ======================== Mobile Menu Area ======================= -->
+    <div class="miwlo-header-area-mobile">
+        <div class="miwlo-header-mobile">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <ul class="active">
+                            <li>
+                                <?php
+                                $options = get_theme_mod('ama_settings');
+
+                                //Logo
+                                if (!empty($options['logo'])) {
+                                    $logo = $options['logo'];
+                                }
+                                ?>
+                                <a class="mobile-logo" href="<?php echo esc_url(home_url('/')); ?>">
+                                    <img src="<?php echo $logo ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
+                                </a>
+                            </li>
+                            <li class="mobile-header-btn-wrapper">
+                                <?php
+                                // 1) Recuperar el array completo que WP guarda bajo "ama_settings"
+                                $ama_opts = get_theme_mod('ama_settings', []);
+
+                                // 2) Extraer el texto y la URL, con fallback a tus predeterminados
+                                $cta_text = ! empty($ama_opts['cta_text']) ? $ama_opts['cta_text'] : 'Reserva tu cita';
+                                $cta_url  = ! empty($ama_opts['cta_url']) ? $ama_opts['cta_url']  : '#';
+                                ?>
+
+                                <?php if ($cta_text && $cta_url) : ?>
+
+                                    <a class="miwlo-btn-pill btn-black" target="_blank" title="<?php echo esc_attr($cta_text); ?>" href="<?php echo esc_url($cta_url); ?>">
+                                        <?php echo esc_html($cta_text); ?>
+                                    </a>
+
+                                <?php endif; ?>
+
+                            <li>
+                                <a href="#">
+                                    <span>
+                                        <span class="bar"></span>
+                                        <span class="bar"></span>
+                                        <span class="bar"></span>
+                                    </span>
+                                </a>
+                                <ul>
+                                    <?php
+                                    $lang = get_current_lang(); // Asegúrate de tener esta función funcionando correctamente
+
+                                    $menu_location = ($lang === 'en') ? 'principal-menu-en' : 'principal-menu';
+
+                                    wp_nav_menu([
+                                        'theme_location' => $menu_location,
+                                        'container'      => false,
+                                        'items_wrap'     => '%3$s', // Solo imprime los <li> sin <ul>
+                                        'fallback_cb'    => false
+                                    ]);
+                                    ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </div><!-- .container-fluid -->
+        </div><!-- .miwlo-header-mobile -->
+    </div>
