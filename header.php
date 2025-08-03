@@ -24,19 +24,20 @@
             <div class="row">
                 <div class="col">
                     <nav class="navbar navbar-expand-md miwlo-initial-navbar">
-                        <?php
-                        $options = get_theme_mod('ama_settings');
 
-                        //Logo
-                        if (!empty($options['logo'])) {
-                            $logo = $options['logo'];
-                        }
-                        ?>
-                        <div class="logo">
-                            <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
-                                <img src="<?php echo $logo ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" class="logo">
-                            </a>
-                        </div>
+
+                        <?php
+                        // Obtiene la URL del logo desde theme_mod
+                        $logo = get_theme_mod('valencia_marketing_logo');
+
+                        if (!empty($logo)) : ?>
+                            <div class="logo">
+                                <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
+                                    <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" class="logo">
+                                </a>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto">
                                 <?php
@@ -57,22 +58,16 @@
                             <ul class="button-wrapper ml-5">
                                 <li>
                                     <?php
-                                    // 1) Recuperar el array completo que WP guarda bajo "ama_settings"
-                                    $ama_opts = get_theme_mod('ama_settings', []);
+                                    $lang = get_current_lang();
 
-                                    // 2) Extraer el texto y la URL, con fallback a tus predeterminados
-                                    $cta_text = ! empty($ama_opts['cta_text']) ? $ama_opts['cta_text'] : 'Reserva tu cita';
-                                    $cta_url  = ! empty($ama_opts['cta_url']) ? $ama_opts['cta_url']  : '#';
-                                    ?>
+                                    $cta_text = get_theme_mod("valencia_marketing_cta_text_{$lang}");
+                                    $cta_url  = get_theme_mod("valencia_marketing_cta_url_{$lang}");
 
-                                    <?php if ($cta_text && $cta_url) : ?>
-
-                                        <a class="miwlo-btn-pill btn-black" target="_blank" title="<?php echo esc_attr($cta_text); ?>" href="<?php echo esc_url($cta_url); ?>">
+                                    if (!empty($cta_text) && !empty($cta_url)) : ?>
+                                        <a class="miwlo-btn-pill btn-black" href="<?php echo esc_url($cta_url); ?>" target="_blank" title="<?php echo esc_attr($cta_text); ?>">
                                             <?php echo esc_html($cta_text); ?>
                                         </a>
-
                                     <?php endif; ?>
-                                    <!-- <a class="miwlo-btn-pill btn-black" href="#">Reserva tu cita</a> -->
 
                                 </li>
                             </ul>

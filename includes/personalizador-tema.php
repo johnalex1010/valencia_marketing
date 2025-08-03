@@ -25,59 +25,65 @@ function valencia_marketing_customize_register($wp_customize)
         'panel' => 'valencia_marketing_header_panel'
     ));
 
-    //LOGO
-    $wp_customize->add_setting('valencia_marketing_settings[logo]', array(
+    // LOGO
+    $wp_customize->add_setting('valencia_marketing_logo', array(
         'default' => '',
-        'type' => 'theme_mod'
+        'type'    => 'theme_mod',
+        'sanitize_callback' => 'esc_url_raw',
     ));
 
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'logo', array(
-        'label' =>  __('Logo', 'valencia_marketing'),
-        'description' => __('Carga Logo', 'valencia_marketing'),
-        'section' => 'valencia_marketing_header_normal',
-        'settings' => 'valencia_marketing_settings[logo]'
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'valencia_marketing_logo_control', array(
+        'label'       => __('Logo', 'valencia_marketing'),
+        'description' => __('Carga el logo del sitio', 'valencia_marketing'),
+        'section'     => 'valencia_marketing_header_normal',
+        'settings'    => 'valencia_marketing_logo',
     )));
 
-    // ————— Sección Botón CTA en el Header —————
-    $wp_customize->add_section('valencia_marketing_header_cta_section', array(
-        'title'       => __('Botón Call To Action', 'valencia_marketing'),
-        'description' => __('Configura texto y enlace del botón CTA en el encabezado', 'valencia_marketing'),
-        'priority'    => 20,
-        'panel'       => 'valencia_marketing_header_panel',
-    ));
 
-    // Dentro de valencia_marketing_customize_register()
-    $wp_customize->add_setting('valencia_marketing_settings[cta_text]', [
-        'default'           => 'Reserva tu cita',
-        'type'              => 'theme_mod',
-        'sanitize_callback' => 'sanitize_text_field',
-    ]);
-    $wp_customize->add_control('cta_text_control', [
-        'label'    => __('Texto del botón', 'valencia_marketing'),
-        'section'  => 'valencia_marketing_header_cta_section',
-        'settings' => 'valencia_marketing_settings[cta_text]',
-        'type'     => 'text',
-    ]);
+    // Idiomas disponibles
+    $languages = [
+        'es' => 'Español',
+        'en' => 'English',
+    ];
 
-    $wp_customize->add_setting('valencia_marketing_settings[cta_url]', [
-        'default'           => '',
-        'type'              => 'theme_mod',
-        'sanitize_callback' => 'esc_url_raw',
-    ]);
-    $wp_customize->add_control('cta_url_control', [
-        'label'    => __('URL del botón', 'valencia_marketing'),
-        'section'  => 'valencia_marketing_header_cta_section',
-        'settings' => 'valencia_marketing_settings[cta_url]',
-        'type'     => 'url',
-    ]);
+    foreach ($languages as $lang_code => $lang_label) {
+        // Sección del botón CTA por idioma
+        $section_id = "valencia_marketing_header_cta_section_{$lang_code}";
 
-    // Sección: Botón Call To Action
-    $wp_customize->add_section('valencia_marketing_header_cta_button', array(
-        'title' => __('Botón Call To Action', 'valencia_marketing'),
-        'description' => __('Configura el botón del encabezado', 'valencia_marketing'),
-        'priority' => 20,
-        'panel' => 'valencia_marketing_header_panel'
-    ));
+        $wp_customize->add_section($section_id, array(
+            'title'       => __('Botón Call To Action', 'valencia_marketing') . " ($lang_label)",
+            'description' => __('Configura texto y enlace del botón CTA en el encabezado', 'valencia_marketing') . " ($lang_label)",
+            'priority'    => ($lang_code === 'es') ? 20 : 21,
+            'panel'       => 'valencia_marketing_header_panel',
+        ));
+
+        // Texto del botón
+        $wp_customize->add_setting("valencia_marketing_cta_text_{$lang_code}", [
+            'default'           => ($lang_code === 'en') ? 'Book your appointment' : 'Reserva tu cita',
+            'type'              => 'theme_mod',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+        $wp_customize->add_control("valencia_marketing_cta_text_control_{$lang_code}", [
+            'label'    => __('Texto del botón', 'valencia_marketing') . " ($lang_label)",
+            'section'  => $section_id,
+            'settings' => "valencia_marketing_cta_text_{$lang_code}",
+            'type'     => 'text',
+        ]);
+
+        // URL del botón
+        $wp_customize->add_setting("valencia_marketing_cta_url_{$lang_code}", [
+            'default'           => '',
+            'type'              => 'theme_mod',
+            'sanitize_callback' => 'esc_url_raw',
+        ]);
+        $wp_customize->add_control("valencia_marketing_cta_url_control_{$lang_code}", [
+            'label'    => __('URL del botón', 'valencia_marketing') . " ($lang_label)",
+            'section'  => $section_id,
+            'settings' => "valencia_marketing_cta_url_{$lang_code}",
+            'type'     => 'url',
+        ]);
+    }
+
 
     // Panel Pie de Página
     $wp_customize->add_panel('valencia_marketing_footer_panel', array(

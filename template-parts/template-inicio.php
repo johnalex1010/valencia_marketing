@@ -3,16 +3,6 @@
 <!-- Cabecera -->
 <?php get_header(); ?>
 
-<?php
-$lang = get_current_lang();
-if ($lang === 'es') {
-    echo 'Hola mundo';
-} else {
-    echo 'Hello world';
-}
-?>
-
-
 <!-- ====================== Hero ======================= -->
 <section class="miwlo-app-landing-banner-wrap">
     <div class="app-landing-top-shape">
