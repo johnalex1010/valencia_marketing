@@ -19,6 +19,41 @@
 
 <body <?php body_class(); ?>>
 
+    <!-- ======================== Language Selector ======================= -->
+    <aside class="lenguajes-selector" aria-label="Selector de idioma">
+        <?php
+        $lang = get_current_lang();
+
+        // Título según idioma actual
+        $heading = ($lang === 'en') ? 'Select a language' : 'Selecciona un idioma';
+
+        // Define URLs base por idioma
+        $base_url = home_url('/');
+        $languages = [
+            'es' => $base_url,
+            'en' => trailingslashit($base_url) . 'en/',
+        ];
+        ?>
+
+        <h2 class="lenguajes-titulo"><?php echo esc_html($heading); ?></h2>
+
+        <ul class="language-switcher">
+            <?php foreach ($languages as $code => $url) :
+                $flag_url = IMAGES . "/flags/{$code}.png";
+            ?>
+                <li class="<?php echo ($lang === $code) ? 'active' : ''; ?>">
+                    <a href="<?php echo esc_url($url); ?>">
+                        <img src="<?php echo esc_url($flag_url); ?>" alt="<?php echo esc_attr(strtoupper($code)); ?>" width="30" height="auto" style="vertical-align: middle; margin-right: 6px;">
+                        <?php //echo strtoupper($code); 
+                        ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+    </aside>
+
+    <!-- ======================== Desktop Menu Area ======================= -->
     <header class="header-area-desktop miwlo-white-bg miwlo-header-black">
         <div class="container">
             <div class="row">
@@ -41,7 +76,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto">
                                 <?php
-                                $lang = get_current_lang(); // Asegúrate de tener esta función funcionando correctamente
+                                $lang = get_current_lang();
 
                                 $menu_location = ($lang === 'en') ? 'principal-menu-en' : 'principal-menu';
 
@@ -79,7 +114,7 @@
     </header>
 
     <!-- ======================== Mobile Menu Area ======================= -->
-    <div class="miwlo-header-area-mobile">
+    <nav class="miwlo-header-area-mobile">
         <div class="miwlo-header-mobile">
             <div class="container-fluid">
                 <div class="row">
@@ -144,4 +179,4 @@
                 </div><!-- .row -->
             </div><!-- .container-fluid -->
         </div><!-- .miwlo-header-mobile -->
-    </div>
+    </nav>
