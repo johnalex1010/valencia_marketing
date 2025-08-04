@@ -56,8 +56,10 @@
                                 <div class="mobile-wrapper">
                                     <div class="layer" data-depth="0.1">
                                         <div>
-                                            <img data-parallax='{"y" : 30}' class="mobile"
-                                                src="<?php echo IMAGES ?>/banner/mobile-border.png" alt="Mobile">
+                                            <?php $imagen_es = get_sub_field('imagen_es'); ?>
+                                            <?php if ($imagen_es) : ?>
+                                                <img data-parallax='{"y" : 30}' class="mobile" src="<?php echo esc_url($imagen_es['url']); ?>" alt="<?php echo esc_attr($imagen_es['alt']); ?>" />
+                                            <?php endif; ?>
                                         </div>
                                     </div><!-- .layer -->
                                 </div><!-- .mobile-wrapper -->
@@ -220,8 +222,8 @@
 <!-- ========================= Nuestros servicios ========================= -->
 <?php if (have_rows('grupo_servicios')) : ?>
     <?php while (have_rows('grupo_servicios')) : the_row(); ?>
-        <section class="miwlo-features-wrap feature-two">
-            <div id="nuestros-servicios" class="feature-circle-dot-left miwlo-parallax">
+        <section id="nuestros-servicios" class="miwlo-features-wrap feature-two">
+            <div class="feature-circle-dot-left miwlo-parallax">
                 <div class="layer" data-depth="2">
                     <div>
                         <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-pill-black-25.png" alt="Circle">
