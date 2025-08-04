@@ -12,12 +12,6 @@
             <div class="col-lg col-sm-4"></div>
             <div class="col-lg col-sm-4">
                 <div class="miwlo-footer-text">
-                    <!-- <a class="navbar-brand" href="index.html">
-                        <img src="<?php echo IMAGES ?>/logo-black.png" alt="Miwlo">
-                    </a> -->
-
-
-
                     <?php
                     $footer_logo = get_theme_mod('ama_footer_logo');
                     ?>
@@ -39,7 +33,18 @@
             </div>
             <div class="col-lg col-sm-4">
                 <div class="miwlo-footer-text">
-                    <h3>Enlaces</h3>
+                    <?php
+                    $lang = get_current_lang();
+                    $translations = [
+                        'es' => 'Enlaces',
+                        'en' => 'Links',
+                    ];
+
+                    $label = isset($translations[$lang]) ? $translations[$lang] : $translations['es'];
+                    ?>
+
+                    <h3><?php echo $label; ?></h3>
+
                     <ul>
                         <?php
                         $lang = get_current_lang(); // Asegúrate de tener esta función funcionando correctamente
