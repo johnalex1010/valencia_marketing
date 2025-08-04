@@ -41,9 +41,9 @@
 		bottom: 50px;
 	}
 
-	.miwlo-app-landing-banner-text h2 {
+	/* .miwlo-app-landing-banner-text h2 {
 		font-size: 40px;
-	}
+	} */
 
 	.miwlo-app-landing-banner-text p br {
 		display: none;
@@ -238,7 +238,7 @@
 
 	.miwlo-features-text-wrapper h3 {
 		margin-top: 20px;
-		font-size: 30px;
+		/* font-size: 30px; */
 	}
 
 	.miwlo-free-trial-wrap,
@@ -644,9 +644,9 @@
 		bottom: 50px;
 	}
 
-	.miwlo-app-landing-banner-text h2 {
+	/* .miwlo-app-landing-banner-text h2 {
 		font-size: 30px;
-	}
+	} */
 
 	.miwlo-app-landing-banner-text p {
 		font-size: 14px;
@@ -679,6 +679,8 @@
 
 	.why-choice-options-img-wrap {
 		padding-bottom: 0;
+		width: 50px;
+		margin: auto;
 	}
 
 	.miwlo-features-wrap {
@@ -689,7 +691,7 @@
 		padding-bottom: 30px;
 	}
 
-	.miwlo-features-text-wrapper h3,
+	/* .miwlo-features-text-wrapper h3, */
 	.miwlo-download-app-text h3 {
 		font-size: 30px;
 	}
@@ -1235,9 +1237,9 @@
 		top: 160px;
 	}
 
-	.miwlo-app-landing-banner-text h2 {
+	/* .miwlo-app-landing-banner-text h2 {
 		font-size: 40px;
-	}
+	} */
 
 	.app-landing-bottom-shape .circle-dot-bottom-left {
 		bottom: 50px;
@@ -1660,9 +1662,9 @@
 		bottom: 80px;
 	}
 
-	.miwlo-app-landing-banner-text h2 {
-		font-size: 70px;
-	}
+	/* .miwlo-app-landing-banner-text h2 {
+		font-size: clamp(30px, 4vw, 70px);
+	} */
 
 	.miwlo-app-landing-banner-text p {
 		font-size: 20px;
@@ -1685,7 +1687,7 @@
 
 	.miwlo-features-text-wrapper h3 {
 		margin-top: 0;
-		font-size: 50px;
+		/* font-size: 50px; */
 	}
 
 	.miwlo-download-app-screenshot img {
@@ -2063,7 +2065,7 @@
 	}
 
 	.miwlo-app-landing-banner-text h2 {
-		font-size: 85px;
+		font-size: clamp(30px, 4vw, 70px);
 	}
 
 	.miwlo-app-landing-banner-right {
@@ -2099,13 +2101,14 @@
 		right: 60px;
 	}
 
-	.miwlo-features-text-wrapper h3,
 	.miwlo-download-app-text h3,
 	.miwlo-subscribe-text h3,
 	.miwlo-app-testimonial-text h2 {
 		font-size: 70px;
 	}
-
+	.miwlo-features-text-wrapper h3 {
+		font-size: clamp(20px, 4vw, 40px);
+	}
 	.miwlo-download-app-wrap {
 		margin: 75px 0;
 	}
