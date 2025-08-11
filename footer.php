@@ -9,7 +9,7 @@
     </div><!-- .footer-triangle-shape-top -->
     <div class="container">
         <div class="row">
-            <div class="col-lg col-sm-4"></div>
+
             <div class="col-lg col-sm-4">
                 <div class="miwlo-footer-text">
                     <?php
@@ -62,8 +62,38 @@
                     </ul>
                 </div><!-- .miwlo-footer-text -->
             </div>
+            <div class="col-lg col-sm-4">
+                <div class="miwlo-footer-text">
+                    <?php
+                    $lang = get_current_lang();
+                    $translations = [
+                        'es' => 'Otros Enlaces',
+                        'en' => 'Other Links',
+                    ];
 
-            <div class="col-lg col-sm-4"></div>
+                    $label = isset($translations[$lang]) ? $translations[$lang] : $translations['es'];
+                    ?>
+
+                    <h3><?php echo $label; ?></h3>
+
+                    <ul>
+                        <?php
+                        $lang = get_current_lang(); // Asegúrate de tener esta función funcionando correctamente
+
+                        $menu_location = ($lang === 'en') ? 'otroslinks-menu-en' : 'otroslinks-menu';
+
+                        wp_nav_menu([
+                            'theme_location' => $menu_location,
+                            'container'      => 'nav',
+                            'menu_class'     => 'navbar-nav ms-auto',
+                            'depth'          => 2,
+                            'fallback_cb'    => false
+                        ]);
+                        ?>
+                    </ul>
+                </div><!-- .miwlo-footer-text -->
+            </div>
+            <!-- <div class="col-lg col-sm-4"></div> -->
         </div><!-- .row -->
     </div><!-- .container -->
     <div class="footer-triangle-shape-bottom miwlo-parallax">

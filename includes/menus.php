@@ -15,5 +15,14 @@ function valencia_marketing_menus()
     ]);
 }
 
+function valencia_marketing_others_menus()
+{
+    register_nav_menus([
+        'otroslinks-menu' => 'Menú Otros Enlaces',
+        'otroslinks-menu-en' => 'Menu Other Link'
+    ]);
+}
+
 
 add_action('init', 'valencia_marketing_menus');
+add_action('init', 'valencia_marketing_others_menus');
