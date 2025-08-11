@@ -30,8 +30,8 @@
         // Define URLs base por idioma
         $base_url = home_url('/');
         $languages = [
-            'es' => $base_url,
-            'en' => trailingslashit($base_url) . 'en/',
+            'en' => $base_url,
+            'es' => trailingslashit($base_url) . 'es/',
         ];
         ?>
 

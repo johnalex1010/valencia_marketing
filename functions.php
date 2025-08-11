@@ -162,9 +162,9 @@ function get_current_lang()
     $segments = explode('/', $relative_path);
     $first_segment = isset($segments[0]) ? $segments[0] : '';
 
-    if ($first_segment === 'en') {
-        return 'en';
+    if ($first_segment === 'es') {
+        return 'es';
     }
 
-    return 'es';
+    return 'en';
 }
