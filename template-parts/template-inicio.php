@@ -6,90 +6,92 @@
 <!-- ====================== Hero ======================= -->
 <?php if (have_rows('grupo_header_es')) : ?>
     <?php while (have_rows('grupo_header_es')) : the_row(); ?>
-        <section class="miwlo-app-landing-banner-wrap">
-            <div class="app-landing-top-shape">
-                <img class="app-circle-shape" src="<?php echo IMAGES ?>/shape/circle-line-large.png" alt="Circle">
-                <div class="small-dot-wrapper miwlo-parallax">
-                    <div class="layer" data-depth="0.1">
-                        <div>
-                            <img data-parallax='{"y" : 30}' class="app-line-dot-small" src="<?php echo IMAGES ?>/shape/line-dot-sm.png"
-                                alt="Line Dot">
+        <div class="miwlo-app-landing-banner-wrap_bg">
+            <section class="miwlo-app-landing-banner-wrap">
+                <div class="app-landing-top-shape">
+                    <!-- <img class="app-circle-shape" src="<?php echo IMAGES ?>/shape/circle-line-large.png" alt="Circle"> -->
+                    <div class="small-dot-wrapper miwlo-parallax">
+                        <div class="layer" data-depth="0.1">
+                            <div>
+                                <img data-parallax='{"y" : 30}' class="app-line-dot-small" src="<?php echo IMAGES ?>/shape/line-dot-sm.png"
+                                    alt="Line Dot">
+                            </div>
                         </div>
-                    </div><!-- .layer -->
-                </div><!-- .small-dot-wrapper -->
-                <div class="circle-dot-left miwlo-parallax">
+                    </div>
+                    <!-- <div class="circle-dot-left miwlo-parallax">
                     <div class="layer" data-depth="2">
                         <div>
                             <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-line-25.png" alt="Circle">
                         </div>
-                    </div><!-- .layer -->
-                </div><!-- .circle-dot-left -->
-                <div class="circle-dot-right miwlo-parallax">
-                    <div class="layer" data-depth="3">
-                        <div>
-                            <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/qube-60.png" alt="Circle">
+                    </div>
+                </div> -->
+                    <div class="circle-dot-right miwlo-parallax">
+                        <div class="layer" data-depth="3">
+                            <div>
+                                <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/qube-60.png" width="40" alt="Circle">
+                            </div>
                         </div>
-                    </div><!-- .layer -->
-                </div><!-- .circle-dot-right -->
-            </div><!-- .app-circle-shape -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-7 align-self-center">
-                        <div class="miwlo-app-landing-banner-text">
-                            <?php the_sub_field('texto_es'); ?>
-                            <div class="miwlo-app-landing-btn-wrap d-lg-flex">
-                                <a target="<?php the_sub_field('target_es'); ?>" class="miwlo-btn-pill btn-black d-flex align-items-center" href="<?php the_sub_field('boton_url_es'); ?>" title="<?php the_sub_field('boton_texto_es'); ?>">
-                                    <div class="icon">
-                                        <i class="fas fa-calendar"></i>
-                                    </div>
-                                    <div>
-                                        <?php the_sub_field('boton_texto_es'); ?>
-                                    </div>
-                                </a>
-
-                            </div><!-- .miwlo-app-landing-btn-wrap -->
-                        </div><!-- .miwlo-app-landing-banner-text -->
-                    </div><!-- .col-md-7 -->
-                    <div class="col-sm-5">
-                        <div class="miwlo-app-landing-banner-right">
-                            <div class="miwlo-app-landing-banner-image miwlo-parallax">
-                                <div class="mobile-wrapper">
-                                    <div class="layer" data-depth="0.1">
-                                        <div>
-                                            <?php $imagen_es = get_sub_field('imagen_es'); ?>
-                                            <?php if ($imagen_es) : ?>
-                                                <img data-parallax='{"y" : 30}' class="mobile" src="<?php echo esc_url($imagen_es['url']); ?>" alt="<?php echo esc_attr($imagen_es['alt']); ?>" />
-                                            <?php endif; ?>
+                    </div><!-- .circle-dot-right -->
+                </div><!-- .app-circle-shape -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7 align-self-center">
+                            <div class="miwlo-app-landing-banner-text">
+                                <?php the_sub_field('texto_es'); ?>
+                                <div class="miwlo-app-landing-btn-wrap d-lg-flex">
+                                    <a target="<?php the_sub_field('target_es'); ?>" class="miwlo-btn-pill btn-black d-flex align-items-center" href="<?php the_sub_field('boton_url_es'); ?>" title="<?php the_sub_field('boton_texto_es'); ?>">
+                                        <div class="icon">
+                                            <i class="fas fa-calendar"></i>
                                         </div>
-                                    </div><!-- .layer -->
-                                </div><!-- .mobile-wrapper -->
-                            </div><!-- .miwlo-app-landing-banner-image -->
-                            <div class="app-landing-moible-bg">
-                                <div>
-                                    <img src="<?php echo IMAGES ?>/shape/circle-dot.png" alt="Mobile">
-                                </div>
-                            </div><!-- .app-landing-moible-bg -->
-                        </div><!-- .miwlo-app-landing-banner-right -->
-                    </div><!-- .col-md-5 -->
-                </div><!-- .row -->
-            </div><!-- .container -->
-            <div class="app-landing-bottom-shape">
-                <div class="app-line-dot-small-bottom miwlo-parallax">
-                    <div class="layer" data-depth="1">
-                        <div>
-                            <img data-parallax='{"x" : 80}' src="<?php echo IMAGES ?>/shape/line-dot-sm.png" alt="Line Dot">
+                                        <div>
+                                            <?php the_sub_field('boton_texto_es'); ?>
+                                        </div>
+                                    </a>
+
+                                </div><!-- .miwlo-app-landing-btn-wrap -->
+                            </div><!-- .miwlo-app-landing-banner-text -->
+                        </div><!-- .col-md-7 -->
+                        <div class="col-sm-5">
+                            <div class="miwlo-app-landing-banner-right">
+                                <div class="miwlo-app-landing-banner-image miwlo-parallax">
+                                    <div class="mobile-wrapper">
+                                        <div class="layer" data-depth="0.1">
+                                            <div>
+                                                <?php $imagen_es = get_sub_field('imagen_es'); ?>
+                                                <?php if ($imagen_es) : ?>
+                                                    <img data-parallax='{"y" : 30}' class="mobile" src="<?php echo esc_url($imagen_es['url']); ?>" alt="<?php echo esc_attr($imagen_es['alt']); ?>" />
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div><!-- .mobile-wrapper -->
+                                </div><!-- .miwlo-app-landing-banner-image -->
+                                <div class="app-landing-moible-bg">
+                                    <div>
+                                        <img src="<?php echo IMAGES ?>/shape/circle-dot.png" alt="Mobile">
+                                    </div>
+                                </div><!-- .app-landing-moible-bg -->
+                            </div><!-- .miwlo-app-landing-banner-right -->
+                        </div><!-- .col-md-5 -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+                <div class="app-landing-bottom-shape">
+                    <div class="app-line-dot-small-bottom miwlo-parallax">
+                        <div class="layer" data-depth="1">
+                            <div>
+                                <img data-parallax='{"x" : 80}' src="<?php echo IMAGES ?>/shape/line-dot-sm.png" alt="Line Dot">
+                            </div>
                         </div>
-                    </div>
-                </div><!-- .app-line-dot-small-bottom -->
-                <div class="circle-dot-bottom-left miwlo-parallax">
-                    <div class="layer" data-depth="1">
-                        <div>
-                            <img data-parallax='{"y" : 30}' src="<?php echo IMAGES ?>/shape/qube-60.png" alt="Circle">
+                    </div><!-- .app-line-dot-small-bottom -->
+                    <div class="circle-dot-bottom-left miwlo-parallax">
+                        <div class="layer" data-depth="1">
+                            <div>
+                                <img data-parallax='{"y" : 30}' src="<?php echo IMAGES ?>/shape/qube-60.png" width="40" alt="Circle">
+                            </div>
                         </div>
-                    </div>
-                </div><!-- .circle-dot-bottom-left -->
-            </div><!-- .app-circle-shape -->
-        </section>
+                    </div><!-- .circle-dot-bottom-left -->
+                </div><!-- .app-circle-shape -->
+            </section>
+        </div>
     <?php endwhile; ?>
 <?php endif; ?>
 
@@ -158,64 +160,60 @@
 <!-- ========================= Quienes somos ========================= -->
 <?php if (have_rows('grupo_quienes_somos')) : ?>
     <?php while (have_rows('grupo_quienes_somos')) : the_row(); ?>
-        <section id="quienes-somos" class="miwlo-features-wrap feature-one">
-            <div class="feature-circle-dot-left miwlo-parallax">
-                <div class="layer" data-depth="2">
-                    <div>
-                        <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-line-20.png" alt="Circle">
-                    </div>
-                </div><!-- .layer -->
-            </div><!-- .feature-circle-dot-left -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg col-md">
-                        <div class="miwlo-feature-img-wrapper">
-                            <div class="miwlo-feature-img miwlo-parallax">
-                                <div class="layer" data-depth="0.1">
-                                    <div>
-                                        <?php $imagen = get_sub_field('imagen'); ?>
-                                        <?php if ($imagen) : ?>
-                                            <img data-parallax='{"y" : 30}' class="mobile" src="<?php echo esc_url($imagen['url']); ?>" alt="<?php echo esc_attr($imagen['alt']); ?>" />
-                                        <?php endif; ?>
+        <div class="miwlo-features-wrap_bg">
+            <section id="quienes-somos" class="miwlo-features-wrap feature-one">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg col-md">
+                            <div class="miwlo-feature-img-wrapper">
+                                <div class="miwlo-feature-img miwlo-parallax">
+                                    <div class="layer" data-depth="0.1">
+                                        <div>
+                                            <?php $imagen = get_sub_field('imagen'); ?>
+                                            <?php if ($imagen) : ?>
+                                                <img data-parallax='{"y" : 30}' class="mobile" src="<?php echo esc_url($imagen['url']); ?>" alt="<?php echo esc_attr($imagen['alt']); ?>" />
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
-                                </div><!-- .layer -->
-                            </div><!-- .miwlo-feature-img -->
-                            <div class="miwlo-feature-img-shape miwlo-parallax">
-                                <div class="layer" data-depth="1">
-                                    <div>
-                                        <img data-parallax='{"x" : 80}' src="<?php echo IMAGES ?>/shape/shape-07.png" alt="Line Dot">
+                                </div><!-- .miwlo-feature-img -->
+                                <div class="miwlo-feature-img-shape miwlo-parallax">
+                                    <div class="layer" data-depth="1">
+                                        <div>
+                                            <img data-parallax='{"x" : 80}' src="<?php echo IMAGES ?>/shape/shape-07.png" alt="Line Dot">
+                                        </div>
                                     </div>
-                                </div>
-                            </div><!-- .miwlo-feature-img-shape -->
-                        </div><!-- .miwlo-feature-img-wrapper -->
-                    </div><!-- .col-lg -->
-                    <div class="col-lg col-md offset-xl-2 offset-md-1 align-self-center">
-                        <div class="miwlo-features-text-wrapper">
-                            <?php the_sub_field('texto'); ?>
-                            <!-- <div>
+                                </div><!-- .miwlo-feature-img-shape -->
+                            </div><!-- .miwlo-feature-img-wrapper -->
+                        </div><!-- .col-lg -->
+                        <div class="col-lg col-md offset-xl-2 offset-md-1 align-self-center">
+                            <div class="miwlo-features-text-wrapper">
+                                <?php the_sub_field('texto'); ?>
+                                <!-- <div>
                         <a class="miwlo-btn-border btn-black" href="#">Comenzar</a>
                     </div> -->
-                        </div><!-- .miwlo-features-text-wrapper -->
-                    </div><!-- .col-lg -->
-                </div><!-- .row -->
-            </div><!-- .container -->
-            <div class="feature-bottom-shape">
-                <div class="feature-circle-dot-bottom-left miwlo-parallax">
-                    <div class="layer" data-depth="1">
-                        <div>
-                            <img data-parallax='{"y" : 30}' src="<?php echo IMAGES ?>/shape/circle-line-25.png" alt="Circle">
+                            </div><!-- .miwlo-features-text-wrapper -->
+                        </div><!-- .col-lg -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+                <div class="feature-bottom-shape">
+                    <div class="feature-circle-dot-bottom-left miwlo-parallax">
+                        <div class="layer" data-depth="1">
+                            <div>
+                                <img data-parallax='{"y" : 30}' src="<?php echo IMAGES ?>/shape/circle-line-25.png" alt="Circle">
+                            </div>
                         </div>
-                    </div>
-                </div><!-- .feature-circle-dot-bottom-left -->
-                <div class="feature-triangle-shape miwlo-parallax">
-                    <div class="layer">
-                        <div>
-                            <img data-parallax='{"y" : 50}' src="<?php echo IMAGES ?>/shape/shape-08.png" alt="Circle">
+                    </div><!-- .feature-circle-dot-bottom-left -->
+                    <div class="feature-triangle-shape miwlo-parallax">
+                        <div class="layer">
+                            <div>
+                                <img data-parallax='{"y" : 50}' src="<?php echo IMAGES ?>/shape/shape-08.png" alt="Circle">
+                            </div>
                         </div>
-                    </div>
-                </div><!-- .feature-triangle-shape -->
-            </div><!-- .feature-bottom-shape -->
-        </section>
+                    </div><!-- .feature-triangle-shape -->
+                </div><!-- .feature-bottom-shape -->
+            </section>
+        </div>
     <?php endwhile; ?>
 <?php endif; ?>
 
@@ -228,7 +226,7 @@
                     <div>
                         <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-pill-black-25.png" alt="Circle">
                     </div>
-                </div><!-- .layer -->
+                </div>
             </div><!-- .feature-circle-dot-left -->
             <div class="container">
                 <div class="row">
@@ -251,7 +249,7 @@
                                             <img data-parallax='{"y" : 30}' src="<?php echo esc_url($imagen['url']); ?>" alt="<?php echo esc_attr($imagen['alt']); ?>" />
                                         <?php endif; ?>
                                     </div>
-                                </div><!-- .layer -->
+                                </div>
                             </div><!-- .miwlo-feature-img -->
                             <div class="miwlo-feature-img-shape miwlo-parallax">
                                 <div class="layer" data-depth="1">
@@ -286,7 +284,7 @@
                     <div>
                         <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-line-20.png" alt="Circle">
                     </div>
-                </div><!-- .layer -->
+                </div>
             </div><!-- .feature-circle-dot-left -->
             <div class="container">
                 <div class="row">
@@ -300,7 +298,7 @@
                                             <img data-parallax='{"y" : 30}' class="mobile" src="<?php echo esc_url($imagen['url']); ?>" alt="<?php echo esc_attr($imagen['alt']); ?>" />
                                         <?php endif; ?>
                                     </div>
-                                </div><!-- .layer -->
+                                </div>
                             </div><!-- .miwlo-feature-img -->
                             <div class="miwlo-feature-img-shape miwlo-parallax">
                                 <div class="layer" data-depth="1">
@@ -344,58 +342,60 @@
 <!-- =================== Que esperar de nosotros =================== -->
 <?php if (have_rows('grupo_que_esperar')) : ?>
     <?php while (have_rows('grupo_que_esperar')) : the_row(); ?>
-        <section id="que-esperar" class="miwlo-features-wrap feature-two">
-            <div class="feature-circle-dot-left miwlo-parallax">
-                <div class="layer" data-depth="2">
-                    <div>
-                        <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-pill-black-25.png" alt="Circle">
-
-                    </div>
-                </div><!-- .layer -->
-            </div><!-- .feature-circle-dot-left -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg col-md align-self-center order-md-1 order-2">
-                        <div class="miwlo-features-text-wrapper">
-                            <?php the_sub_field('texto'); ?>
-                            <!-- <div data-aos="fade-up" data-aos-delay="500">
-                        <a class="miwlo-btn-border btn-black" href="#">Get Started</a>
-                    </div> -->
-                        </div><!-- .miwlo-features-text-wrapper -->
-                    </div><!-- .col-md -->
-                    <div class="col-lg col-md offset-lg-2 offset-md-1 offset-sm-0 order-md-2 order-1">
-                        <div class="miwlo-feature-img-wrapper">
-                            <div class="miwlo-feature-img miwlo-parallax">
-                                <div class="layer" data-depth="0.1">
-                                    <div data-aos="fade-up" data-aos-delay="300">
-                                        <?php $imagen = get_sub_field('imagen'); ?>
-                                        <?php if ($imagen) : ?>
-                                            <img ata-parallax='{"y" : 30}' src="<?php echo esc_url($imagen['url']); ?>" alt="<?php echo esc_attr($imagen['alt']); ?>" />
-                                        <?php endif; ?>
-                                    </div>
-                                </div><!-- .layer -->
-                            </div><!-- .miwlo-feature-img -->
-                            <div class="miwlo-feature-img-shape miwlo-parallax">
-                                <div class="layer" data-depth="1">
-                                    <div data-aos="fade-up" data-aos-delay="500">
-                                        <img data-parallax='{"x" : 80}' src="<?php echo IMAGES ?>/shape/shape-07.png" alt="Line Dot">
-                                    </div>
-                                </div>
-                            </div><!-- .miwlo-feature-img-shape -->
-                        </div><!-- .miwlo-feature-img-wrapper -->
-                    </div><!-- .col-md -->
-                </div><!-- .row -->
-            </div><!-- .container -->
-            <div class="feature-bottom-shape">
-                <div class="feature-circle-dot-bottom-left miwlo-parallax">
-                    <div class="layer" data-depth="1">
+        <div class="miwlo-esperar-wrap_bg">
+            <section id="que-esperar" class="miwlo-features-wrap feature-two">
+                <div class="feature-circle-dot-left miwlo-parallax">
+                    <div class="layer" data-depth="2">
                         <div>
-                            <img data-parallax='{"y" : 30}' src="<?php echo IMAGES ?>/shape/cross-25.png" alt="Circle">
+                            <img data-parallax='{"y" : 100}' src="<?php echo IMAGES ?>/shape/circle-pill-black-25.png" alt="Circle">
+
                         </div>
                     </div>
-                </div><!-- .feature-circle-dot-bottom-left -->
-            </div><!-- .feature-bottom-shape -->
-        </section><!-- .miwlo-features-wrap -->
+                </div><!-- .feature-circle-dot-left -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg col-md align-self-center order-md-1 order-2">
+                            <div class="miwlo-features-text-wrapper">
+                                <?php the_sub_field('texto'); ?>
+                                <!-- <div data-aos="fade-up" data-aos-delay="500">
+                        <a class="miwlo-btn-border btn-black" href="#">Get Started</a>
+                    </div> -->
+                            </div><!-- .miwlo-features-text-wrapper -->
+                        </div><!-- .col-md -->
+                        <div class="col-lg col-md offset-lg-2 offset-md-1 offset-sm-0 order-md-2 order-1">
+                            <div class="miwlo-feature-img-wrapper">
+                                <div class="miwlo-feature-img miwlo-parallax">
+                                    <div class="layer" data-depth="0.1">
+                                        <div data-aos="fade-up" data-aos-delay="300">
+                                            <?php $imagen = get_sub_field('imagen'); ?>
+                                            <?php if ($imagen) : ?>
+                                                <img ata-parallax='{"y" : 30}' src="<?php echo esc_url($imagen['url']); ?>" alt="<?php echo esc_attr($imagen['alt']); ?>" />
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div><!-- .miwlo-feature-img -->
+                                <div class="miwlo-feature-img-shape miwlo-parallax">
+                                    <div class="layer" data-depth="1">
+                                        <div data-aos="fade-up" data-aos-delay="500">
+                                            <img data-parallax='{"x" : 80}' src="<?php echo IMAGES ?>/shape/shape-07.png" alt="Line Dot">
+                                        </div>
+                                    </div>
+                                </div><!-- .miwlo-feature-img-shape -->
+                            </div><!-- .miwlo-feature-img-wrapper -->
+                        </div><!-- .col-md -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+                <div class="feature-bottom-shape">
+                    <div class="feature-circle-dot-bottom-left miwlo-parallax">
+                        <div class="layer" data-depth="1">
+                            <div>
+                                <img data-parallax='{"y" : 30}' src="<?php echo IMAGES ?>/shape/cross-25.png" alt="Circle">
+                            </div>
+                        </div>
+                    </div><!-- .feature-circle-dot-bottom-left -->
+                </div><!-- .feature-bottom-shape -->
+            </section><!-- .miwlo-features-wrap -->
+        </div>
     <?php endwhile; ?>
 <?php endif; ?>
 
@@ -410,7 +410,7 @@
                             <img data-parallax='{"y" : 50}' src="<?php echo IMAGES ?>/shape/shape-08.png" alt="Circle">
                         </div>
                     </div>
-                </div><!-- .testimonial-triangle-shape -->
+                </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
@@ -420,7 +420,7 @@
                                         <div data-parallax='{"y" : 30}'>
                                             <img src="<?php echo IMAGES ?>/icons/quote-alt.png" alt="Quote">
                                         </div>
-                                    </div><!-- .layer -->
+                                    </div>
                                 </div><!-- .miwlo-testimonial-text-icon -->
                                 <h2><?php the_sub_field('titulo'); ?></h2>
                                 <div class="miwlo-testimonial-text-shape miwlo-parallax">
@@ -468,9 +468,9 @@
 <?php if (have_rows('grupo_motivacional')) : ?>
     <?php while (have_rows('grupo_motivacional')) : the_row(); ?>
         <section class="miwlo-subscribe-newsletter-wrap is-full-width">
-            <div class="miwlo-download-shape">
+            <!-- <div class="miwlo-download-shape">
                 <img src="<?php echo IMAGES ?>/shape/circle-line-half.png" alt="Shape">
-            </div><!-- .miwlo-download-shape -->
+            </div> -->
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12 col-12">

@@ -590,9 +590,31 @@ li.mega-drop-down {
 ==========================================================
 */
 
-.miwlo-app-landing-banner-wrap {
+.miwlo-app-landing-banner-wrap_bg {
 	position: relative;
-	background-color: #fbefe7;
+	background-color: #fff;
+	background-image: url("../images/bg.svg");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.miwlo-features-wrap_bg {
+	background-color: #ecf0ea;
+	background-image: url("../images/bg-hero.png");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.miwlo-esperar-wrap_bg {
+	position: relative;
+	background-color: #fff;
+	background-image: url("../images/bg-3.png");
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .app-landing-top-shape .small-dot-wrapper,
