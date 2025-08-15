@@ -15,6 +15,19 @@
 
     <?php wp_head(); ?>
 
+    <style>
+        .slinky-menu ul {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media screen and (max-width: 768px) {
+            .mobile-header-btn-wrapper {
+                display: none !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -117,40 +130,34 @@
     <nav class="miwlo-header-area-mobile">
         <div class="miwlo-header-mobile">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
+                <div class="row"> <!--hls -->
+                    <div class="col" style="height: 100%;">
                         <ul class="active">
                             <li>
                                 <?php
-                                $options = get_theme_mod('ama_settings');
+                                // Obtiene la URL del logo desde theme_mod
+                                $logo = get_theme_mod('valencia_marketing_logo');
 
-                                //Logo
-                                if (!empty($options['logo'])) {
-                                    $logo = $options['logo'];
-                                }
-                                ?>
-                                <a class="mobile-logo" href="<?php echo esc_url(home_url('/')); ?>">
-                                    <img src="<?php echo $logo ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>">
-                                </a>
+                                if (!empty($logo)) : ?>
+                                    <a class="mobile-logo" href="<?php echo esc_url(home_url('/')); ?>">
+                                        <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" class="logo">
+                                    </a>
+                                <?php endif; ?>
+
                             </li>
                             <li class="mobile-header-btn-wrapper">
                                 <?php
-                                // 1) Recuperar el array completo que WP guarda bajo "ama_settings"
-                                $ama_opts = get_theme_mod('ama_settings', []);
+                                $lang = get_current_lang();
 
-                                // 2) Extraer el texto y la URL, con fallback a tus predeterminados
-                                $cta_text = ! empty($ama_opts['cta_text']) ? $ama_opts['cta_text'] : 'Reserva tu cita';
-                                $cta_url  = ! empty($ama_opts['cta_url']) ? $ama_opts['cta_url']  : '#';
-                                ?>
+                                $cta_text = get_theme_mod("valencia_marketing_cta_text_{$lang}");
+                                $cta_url  = get_theme_mod("valencia_marketing_cta_url_{$lang}");
 
-                                <?php if ($cta_text && $cta_url) : ?>
-
-                                    <a class="miwlo-btn-pill btn-black" target="_blank" title="<?php echo esc_attr($cta_text); ?>" href="<?php echo esc_url($cta_url); ?>">
+                                if (!empty($cta_text) && !empty($cta_url)) : ?>
+                                    <a class="miwlo-btn-pill btn-black" href="<?php echo esc_url($cta_url); ?>" target="_blank" title="<?php echo esc_attr($cta_text); ?>">
                                         <?php echo esc_html($cta_text); ?>
                                     </a>
-
                                 <?php endif; ?>
-
+                            </li>
                             <li>
                                 <a href="#">
                                     <span>
