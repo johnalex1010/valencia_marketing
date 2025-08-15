@@ -3210,3 +3210,35 @@ li.mega-drop-down {
 .language-switcher a {
 	text-decoration: none;
 }
+
+@media screen and (max-width: 1200px) {
+	.lenguajes-selector {
+		position: fixed;
+		bottom: 10px;
+		right: 10px;
+		background-color: transparent;
+		z-index: 999;
+	}
+	.lenguajes-titulo {
+		display: none;
+	}
+	.language-switcher {
+		flex-direction: column;
+		justify-content: center;
+		margin: 0;
+		gap: 5px;
+	}
+	.language-switcher li a {
+		height: 40px;
+		width: 40px;
+		background-color: #fbefe7;
+		border: 1px solid #eee4de;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+	}
+	.language-switcher li a img {
+		margin: 0 !important;
+	}
+}
