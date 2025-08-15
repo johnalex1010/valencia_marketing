@@ -13,15 +13,16 @@
             <div class="col-lg col-sm-4">
                 <div class="miwlo-footer-text">
                     <?php
-                    $footer_logo = get_theme_mod('ama_footer_logo');
-                    ?>
-                    <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
-                        <?php if (!empty($footer_logo)): ?>
-                            <img src="<?php echo esc_url($footer_logo); ?>" alt="logo pie de página">
-                        <?php else: ?>
-                            <img src="<?php echo IMAGES ?>/logo-black.png" alt="logo por defecto">
-                        <?php endif; ?>
-                    </a>
+                    // Obtiene la URL del logo desde theme_mod
+                    $logo = get_theme_mod('valencia_marketing_logo');
+
+                    if (!empty($logo)) : ?>
+                        <div class="logo">
+                            <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
+                                <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" title="<?php bloginfo('name'); ?>" class="logo">
+                            </a>
+                        </div>
+                    <?php endif; ?>
                     <p><small>Copyright @ 2025<br> Designed by <a href="https://johnalex.com.co/" target="_blank">John Alex</a></small></p>
                     <!-- <ul class="miwlo-footer-social">
                         <li><a href="https://www.facebook.com/themestrace"><i class="fab fa-facebook-f"></i></a>
@@ -103,7 +104,7 @@
             </div>
         </div>
     </div><!-- .footer-triangle-shape-bottom -->
-    <img class="app-circle-shape-footer" src="<?php echo IMAGES ?>/shape/circle-line-footer.png" alt="Circle">
+    <!-- <img class="app-circle-shape-footer" src="<?php echo IMAGES ?>/shape/circle-line-footer.png" alt="Circle"> -->
 </footer>
 
 
